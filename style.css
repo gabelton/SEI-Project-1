@@ -1,3 +1,25 @@
+* {
+  box-sizing: border-box;
+}
 body {
   background-color: dodgerblue;
+}
+
+.container {
+  width: 650px;
+  height: 650px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container > div {
+  width: 10%;
+  height: 10%;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
+
+.ship {
+  background-color: grey
 }
