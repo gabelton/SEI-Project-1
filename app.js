@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('js loaded')
 
   const container = document.querySelector('.container')
-  console.log(container)
 
 
   function createGrid() {
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   createGrid()
 
   const width = 10
-  const height = 10
+  //const height = 10
 
   const shipLength = 5
 
@@ -28,15 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+
+  function clearBoard() {
+    const squares = document.querySelectorAll('.container > div')
+    squares.forEach(square => {
+      square.classList.remove('ship')
+    })
+  }
+
   function computerPlaceShips() {
 
     const squares = document.querySelectorAll('.container > div')
 
     let randomIndex = Math.floor(Math.random() * squares.length)
     let columnIndex = (randomIndex % width)
-    console.log(randomIndex, 'Not in while')
-
-    console.log(columnIndex, 'COL')
 
     if (getRandomDirection()) {
 
@@ -44,8 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       while ((width - columnIndex) < shipLength) {
         randomIndex = Math.floor(Math.random() * squares.length)
         columnIndex = (randomIndex % width)
-        console.log(columnIndex)
-        console.log(randomIndex, 'In while')
       }
 
 
@@ -53,7 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < shipLength; i++) {
         const nextIndex = randomIndex + i
         const shipSquare = squares[nextIndex]
-        shipSquare.classList.add('ship')
+        if (shipSquare.className === 'ship') {
+          clearBoard()
+          computerPlaceShips()
+        } else {
+          console.log(shipSquare.classList)
+          shipSquare.classList.add('ship')
+        }
       }
     } else {
       while (randomIndex > 100-(shipLength*10)) {
@@ -62,12 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[randomIndex].classList.add('ship')
       for (let i=0; i < shipLength-1; i++) {
         randomIndex += 10
-        squares[randomIndex].classList.add('ship')
+        if (squares[randomIndex].className === 'ship'){
+          clearBoard()
+          computerPlaceShips()
+        } else {
+          squares[randomIndex].classList.add('ship')
+        }
       }
     }
   }
 
+
   computerPlaceShips()
+  computerPlaceShips()
+  computerPlaceShips()
+
+
 
   /*let randomIndex = Math.floor(Math.random() * squares.length)
   let columnIndex = (randomIndex % width)
