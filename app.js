@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const container = document.querySelector('.container')
 
+const containerPlayer = document.querySelector('.containerPlayer')
+
 
   function createGrid() {
     for (let i = 0; i < 100; i++) {
@@ -12,7 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function createPlayerGrid() {
+    for (let i = 0; i < 100; i++) {
+      const gridSquare = document.createElement('div')
+      containerPlayer.appendChild(gridSquare)
+    }
+  }
+
   createGrid()
+
+  createPlayerGrid()
+
+  const buttons = document.querySelectorAll('.container > div')
+
+  const playerButtons = document.querySelectorAll('.containerPlayer > div')
 
   const width = 10
   //const height = 10
@@ -35,13 +50,43 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      if (button.className === 'ship') {
+        button.classList.add('hit')
+        console.log(button.className)
+      } else if (button.className === 'hit' || button.className === 'miss'){
+        return null
+      } else {
+        button.classList.add('miss')
+      }
+    })
+  } )
+
+  playerButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      if (e.target.className !== 'ship' && button) {
+        button.classList.add('ship')
+        console.log(button.className)
+      } else if (button.className === 'hit' || button.className === 'miss'){
+        return null
+      } else {
+        button.classList.add('miss')
+      }
+    })
+  } )
+
+
+
+
+
   function computerPlaceShips() {
 
     const squares = document.querySelectorAll('.container > div')
 
     let randomIndex = Math.floor(Math.random() * squares.length)
     let columnIndex = (randomIndex % width)
-
+    // decides whether to place right or down
     if (getRandomDirection()) {
 
       //Checking if horizontal ship fits row
@@ -52,9 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       // Creating a horizontal ship
+      //loops through until has placed 5 ship squares
+
       for (let i = 0; i < shipLength; i++) {
         const nextIndex = randomIndex + i
         const shipSquare = squares[nextIndex]
+        // if the loop hits a square that already has a ship placed on it, all ships are wiped and the function calls itself again and keeps calling until it can place a full five square ship
         if (shipSquare.className === 'ship') {
           clearBoard()
           computerPlaceShips()
@@ -85,6 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
   computerPlaceShips()
   computerPlaceShips()
 
+  const carrier = document.querySelectorAll('.carrier')
+
+  function checkForSunk(){
+    const sunk = carrier.every(x => x.className === 'hit')
+    if (sunk) {
+      console.log('You sunk my carrier!')
+    } else return null
+  }
 
 
   /*let randomIndex = Math.floor(Math.random() * squares.length)

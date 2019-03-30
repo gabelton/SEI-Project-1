@@ -5,11 +5,25 @@ body {
   background-color: dodgerblue;
 }
 
+main {
+  display: flex;
+}
+
 .container {
-  width: 650px;
-  height: 650px;
+  width: 500px;
+  height: 500px;
   display: flex;
   flex-wrap: wrap;
+  margin-left: 20px;
+}
+
+.containerPlayer {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .container > div {
@@ -20,6 +34,22 @@ body {
   border-width: 1px;
 }
 
+.containerPlayer > div {
+  width: 10%;
+  height: 10%;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
+
 .ship {
   background-color: grey
+}
+
+.hit {
+  background-color: red;
+}
+
+.miss {
+  background-color: white;
 }
