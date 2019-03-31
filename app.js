@@ -122,17 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for(let i = 0; i<shipLength; i++){
         if(squares[randomIndex].classList.contains('ship')) coastIsClear = false
+        console.log(coastIsClear)
         let nextIndex = randomIndex + width
         nextIndex += 10
-        //const shipSquare = squares[nextIndex]
         if(squares[nextIndex].classList.contains('ship')) coastIsClear = false
         console.log(coastIsClear)
       }
       if(coastIsClear) {
-        for (let i = 0; i<shipLength-1; i++) {
+        for (let i = 0; i<shipLength; i++) {
+          squares[randomIndex].classList.add('ship')
           randomIndex += 10
           console.log(randomIndex)
-          squares[randomIndex].classList.add('ship')
           console.log(squares[randomIndex].classList)
         }
       } else {
