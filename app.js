@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 10
   //const height = 10
 
-  const shipLength = 5
+
 
   //const squares = document.querySelectorAll('.container > div') //
 
@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buttons.forEach(button => {
     button.addEventListener('click', (e) => {
-      if (button.className === 'ship') {
+      if (button.classList.contains('ship')) {
         button.classList.add('hit')
         console.log(button.className)
-      } else if (button.className === 'hit' || button.className === 'miss'){
+      } else if (button.classList.contains('hit') || button.classList.contains === 'miss'){
         return null
       } else {
         button.classList.add('miss')
@@ -61,21 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   } )
 
-  playerButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      if (e.target.className !== 'ship' && button) {
-        button.classList.add('ship')
-        console.log(button.className)
-      } else if (button.className === 'hit' || button.className === 'miss'){
-        return null
-      } else {
-        button.classList.add('miss')
-      }
-    })
-  } )
+const squares = document.querySelectorAll('.container > div')
 
   function computerPlaceShips() {
-    const squares = document.querySelectorAll('.container > div')
+
 
     let randomIndex = Math.floor(Math.random() * squares.length)
 
@@ -106,6 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const nextIndex = randomIndex + i
           const shipSquare = squares[nextIndex]
           shipSquare.classList.add('ship')
+          if (shipLength === 5) shipSquare.classList.add('carrier')
+          else if (shipLength === 4) shipSquare.classList.add('battleship')
+          else if (shipLength === 3) shipSquare.classList.add('submarine')
+          else if (shipLength === 2) shipSquare.classList.add('destroyer')
+          else return null
         }
       } else computerPlaceShips()
 
@@ -125,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(coastIsClear)
         let nextIndex = randomIndex + width
         nextIndex += 10
+
         if(squares[nextIndex].classList.contains('ship')) coastIsClear = false
         console.log(coastIsClear)
       }
@@ -143,21 +138,74 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  let shipLength = 5
+  computerPlaceShips()
+  shipLength = 4
+  computerPlaceShips()
+  shipLength = 3
+  computerPlaceShips()
+  computerPlaceShips()
+  shipLength = 2
+  computerPlaceShips()
 
-  /*
-  function computerPlaceShips() {
 
-  const squares = document.querySelectorAll('.container > div')
 
-  let randomIndex = Math.floor(Math.random() * squares.length)
-  let columnIndex = (randomIndex % width)
-  // decides whether to place right or down
-  if (getRandomDirection()) {
 
-  //Checking if horizontal ship fits row
-  while ((width - columnIndex) < shipLength) {
-  randomIndex = Math.floor(Math.random() * squares.length)
-  columnIndex = (randomIndex % width)
+
+/*  playerButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      while
+      if (e.target.className !== 'ship' && button) {
+        button.classList.add('ship')
+        console.log(button.className)
+      } else if (button.className === 'ship'){
+        button.classList.remove('ship')
+      } else return null
+    })
+  } ) */
+
+
+
+  /*let gameInProgress = false
+
+  function checkPlayerBoardSetup() {
+  playerButtons.forEach(playerButton => {
+
+})
+
+}
+}
+
+
+
+let playerGo = true
+let turnCount = 0
+console.log(turnCount)
+
+function computerTurn() {
+if (turnCount % 2 === 0)
+let randomIndex = Math.floor(Math.random() * squares.length)
+let firstGuess = squares[randomIndex]
+if (firstGuess.classList.contains('ship')){
+firstGuess.classList.add('hit')
+}
+}
+
+
+/*
+function computerPlaceShips() {
+
+const squares = document.querySelectorAll('.container > div')
+
+let randomIndex = Math.floor(Math.random() * squares.length)
+let columnIndex = (randomIndex % width)
+// decides whether to place right or down
+if (getRandomDirection()) {
+
+//Checking if horizontal ship fits row
+while ((width - columnIndex) < shipLength) {
+randomIndex = Math.floor(Math.random() * squares.length)
+columnIndex = (randomIndex % width)
 }
 
 
@@ -196,9 +244,6 @@ squares[randomIndex].classList.add('ship')
 */
 
 
-computerPlaceShips()
-computerPlaceShips()
-computerPlaceShips()
 
 const carrier = document.querySelectorAll('.carrier')
 
