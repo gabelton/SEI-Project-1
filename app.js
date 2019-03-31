@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const container = document.querySelector('.container')
 
-const containerPlayer = document.querySelector('.containerPlayer')
+  const containerPlayer = document.querySelector('.containerPlayer')
 
 
   function createGrid() {
@@ -36,10 +36,8 @@ const containerPlayer = document.querySelector('.containerPlayer')
 
   //const squares = document.querySelectorAll('.container > div') //
 
-  function getRandomDirection() {
-    if (Math.round(Math.random()) === 0){
-      return true
-    }
+  function getRandomDirection(){
+    return Math.round(Math.random()) === 0
   }
 
 
@@ -76,82 +74,151 @@ const containerPlayer = document.querySelector('.containerPlayer')
     })
   } )
 
-
-
-
-
   function computerPlaceShips() {
-
     const squares = document.querySelectorAll('.container > div')
 
     let randomIndex = Math.floor(Math.random() * squares.length)
+
     let columnIndex = (randomIndex % width)
-    // decides whether to place right or down
+
     if (getRandomDirection()) {
 
-      //Checking if horizontal ship fits row
       while ((width - columnIndex) < shipLength) {
         randomIndex = Math.floor(Math.random() * squares.length)
         columnIndex = (randomIndex % width)
       }
 
 
-      // Creating a horizontal ship
-      //loops through until has placed 5 ship squares
 
-      for (let i = 0; i < shipLength; i++) {
+      let coastIsClear = true
+
+
+
+      for(let i = 0; i<shipLength; i++){
+
         const nextIndex = randomIndex + i
-        const shipSquare = squares[nextIndex]
-        // if the loop hits a square that already has a ship placed on it, all ships are wiped and the function calls itself again and keeps calling until it can place a full five square ship
-        if (shipSquare.className === 'ship') {
-          clearBoard()
-          computerPlaceShips()
-        } else {
-          console.log(shipSquare.classList)
+        //const shipSquare = squares[nextIndex]
+        if(squares[nextIndex].classList.contains('ship')) coastIsClear = false
+        console.log(coastIsClear)
+      }
+      if (coastIsClear) {
+        for(let i = 0; i<shipLength; i++) {
+          const nextIndex = randomIndex + i
+          const shipSquare = squares[nextIndex]
           shipSquare.classList.add('ship')
         }
-      }
+      } else computerPlaceShips()
+
+
     } else {
       while (randomIndex > 100-(shipLength*10)) {
         randomIndex = Math.floor(Math.random() * squares.length)
       }
-      squares[randomIndex].classList.add('ship')
-      for (let i=0; i < shipLength-1; i++) {
-        randomIndex += 10
-        if (squares[randomIndex].className === 'ship'){
-          clearBoard()
-          computerPlaceShips()
-        } else {
-          squares[randomIndex].classList.add('ship')
-        }
+
+
+
+      let coastIsClear = true
+
+
+      for(let i = 0; i<shipLength; i++){
+        if(squares[randomIndex].classList.contains('ship')) coastIsClear = false
+        let nextIndex = randomIndex + width
+        nextIndex += 10
+        //const shipSquare = squares[nextIndex]
+        if(squares[nextIndex].classList.contains('ship')) coastIsClear = false
+        console.log(coastIsClear)
       }
+      if(coastIsClear) {
+        for (let i = 0; i<shipLength-1; i++) {
+          randomIndex += 10
+          console.log(randomIndex)
+          squares[randomIndex].classList.add('ship')
+          console.log(squares[randomIndex].classList)
+        }
+      } else {
+        computerPlaceShips()
+      }
+
     }
   }
 
 
-  computerPlaceShips()
-  computerPlaceShips()
-  computerPlaceShips()
 
-  const carrier = document.querySelectorAll('.carrier')
+  /*
+  function computerPlaceShips() {
 
-  function checkForSunk(){
-    const sunk = carrier.every(x => x.className === 'hit')
-    if (sunk) {
-      console.log('You sunk my carrier!')
-    } else return null
-  }
+  const squares = document.querySelectorAll('.container > div')
 
-
-  /*let randomIndex = Math.floor(Math.random() * squares.length)
+  let randomIndex = Math.floor(Math.random() * squares.length)
   let columnIndex = (randomIndex % width)
+  // decides whether to place right or down
+  if (getRandomDirection()) {
 
-  console.log(randomIndex)
+  //Checking if horizontal ship fits row
+  while ((width - columnIndex) < shipLength) {
+  randomIndex = Math.floor(Math.random() * squares.length)
+  columnIndex = (randomIndex % width)
+}
 
-  function getRandomStart() {
-  if (squares[randomIndex].className !== 'ship') {
-  const randomSquare = squares[randomIndex]
-  randomSquare.className = 'ship'
+
+// Creating a horizontal ship
+//loops through until has placed 5 ship squares
+
+for (let i = 0; i < shipLength; i++) {
+const nextIndex = randomIndex + i
+const shipSquare = squares[nextIndex]
+// if the loop hits a square that already has a ship placed on it, all ships are wiped and the function calls itself again and keeps calling until it can place a full five square ship
+if (shipSquare.className === 'ship') {
+clearBoard()
+computerPlaceShips()
+break
+} else {
+console.log(shipSquare.classList)
+shipSquare.classList.add('ship')
+}
+}
+} else {
+while (randomIndex > 100-(shipLength*10)) {
+randomIndex = Math.floor(Math.random() * squares.length)
+}
+squares[randomIndex].classList.add('ship')
+for (let i=0; i < shipLength-1; i++) {
+randomIndex += 10
+if (squares[randomIndex].className === 'ship'){
+clearBoard()
+computerPlaceShips()
+} else {
+squares[randomIndex].classList.add('ship')
+}
+}
+}
+}
+*/
+
+
+computerPlaceShips()
+computerPlaceShips()
+computerPlaceShips()
+
+const carrier = document.querySelectorAll('.carrier')
+
+function checkForSunk(){
+  const sunk = carrier.every(x => x.className === 'hit')
+  if (sunk) {
+    console.log('You sunk my carrier!')
+  } else return null
+}
+
+
+/*let randomIndex = Math.floor(Math.random() * squares.length)
+let columnIndex = (randomIndex % width)
+
+console.log(randomIndex)
+
+function getRandomStart() {
+if (squares[randomIndex].className !== 'ship') {
+const randomSquare = squares[randomIndex]
+randomSquare.className = 'ship'
 }
 }
 
