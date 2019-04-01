@@ -243,9 +243,27 @@ vertButton.addEventListener('click', (e) => {
             shipSquare.classList.add('ship')
           }
           shipCount -= 1
+          console.log(shipCount)
         }
       } else if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === false) {
+        let clearRun = true
+        if(playerButtons[index].classList.contains('ship')) clearRun = false
+        console.log(clearRun)
+        let nextIndex = index + width
+        nextIndex += 10
 
+        if(squares[nextIndex].classList.contains('ship')) clearRun = false
+        console.log(clearRun)
+        if(clearRun) {
+          for (let i = 0; i<shipLength; i++) {
+            playerButtons[index].classList.add('ship')
+            index += 10
+            console.log(index)
+            console.log(playerButtons[index].classList)
+          }
+          shipCount -= 1
+          console.log(shipCount)
+        }
       } else return null
     }
   })
