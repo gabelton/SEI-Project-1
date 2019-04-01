@@ -48,18 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      if (button.classList.contains('ship')) {
-        button.classList.add('hit')
-        console.log(button.className)
-      } else if (button.classList.contains('hit') || button.classList.contains === 'miss'){
-        return null
-      } else {
-        button.classList.add('miss')
-      }
-    })
-  } )
+
 
 
 
@@ -268,6 +257,21 @@ vertButton.addEventListener('click', (e) => {
     }
   })
 
+  buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      if (shipCount === 0) {
+      if (button.classList.contains('ship')) {
+        button.classList.add('hit')
+        console.log(button.className)
+      } else if (button.classList.contains('hit') || button.classList.contains === 'miss'){
+        return null
+      } else {
+        button.classList.add('miss')
+      }
+    } else return null
+    })
+  } )
+
 
 
 /*
@@ -279,7 +283,7 @@ button.classList.add('ship')
 console.log(button.className)
 } else if (button.className === 'ship'){
 button.classList.remove('ship')
-} else return null
+  } else return null
 })
 } ) */
 
