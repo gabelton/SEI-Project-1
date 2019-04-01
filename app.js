@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   } )
 
+
+
 const squares = document.querySelectorAll('.container > div')
 
   function computerPlaceShips() {
@@ -148,11 +150,79 @@ const squares = document.querySelectorAll('.container > div')
   shipLength = 2
   computerPlaceShips()
 
+/*
+let fullCarrier = true
+
+  function checkForCarrier() {
+    playerButtons.forEach((button, index) => {
+    if (button.classList.contains('ship')){
+      for (let i = 0; i<5; i++) {
+        const nextIndex = index + i
+        if (nextIndex.classList.contains('ship') !== true) fullCarrier = false
+      }
+    }
+    if(fullCarrier) {
+      for (let i=0; i<5; i++) {
+        const playerButton = playerButtons[nextIndex]
+        playerButton.classList.add('ship')
+      }
+    }
+    else checkForCarrier()
+    })
+}
+*/
+
+const carrierButton = document.getElementById('carrier')
+
+  carrierButton.addEventListener('click', (e) => {
+    shipLength = 5
+    console.log(shipLength)
+  })
+
+const battleshipButton = document.getElementById('battleship')
+
+battleshipButton.addEventListener('click', (e) => {
+  shipLength = 4
+  console.log(shipLength)
+})
+
+let horizontalDirection = true
+
+const horizonButton = document.getElementById('horizon')
+
+const vertButton = document.getElementById('vert')
+
+  vertButton.addEventListener('click', (e) => {
+    horizontalDirection = false
+    console.log(horizontalDirection)
+  })
+
+let shipCount = 5
+
+playerButtons.forEach((button, index) => {
+  button.onclick = (e) => {
+    if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === true) {
+      let clearRun = true
+      for (let i=0; i<shipLength; i++) {
+        const nextIndex = index + i
+        if(playerButtons[nextIndex].classList.contains('ship')) clearRun = false
+        console.log(clearRun)
+      }
+      if (clearRun) {
+        for (let i=0; i<shipLength; i++) {
+          const nextIndex = index + i
+          const shipSquare = playerButtons[nextIndex]
+          shipSquare.classList.add('ship')
+        }
+      }
+    } else return null
+  }
+})
 
 
 
-
-/*  playerButtons.forEach(button => {
+/*
+  playerButtons.forEach(button => {
     button.addEventListener('click', (e) => {
       while
       if (e.target.className !== 'ship' && button) {
