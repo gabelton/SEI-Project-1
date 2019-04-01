@@ -213,6 +213,11 @@ let horizontalDirection = true
 
 const horizonButton = document.getElementById('horizon')
 
+horizonButton.addEventListener('click', (e) => {
+  horizontalDirection = true
+  console.log(horizontalDirection)
+})
+
 const vertButton = document.getElementById('vert')
 
 vertButton.addEventListener('click', (e) => {
@@ -239,6 +244,8 @@ vertButton.addEventListener('click', (e) => {
           }
           shipCount -= 1
         }
+      } else if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === false) {
+
       } else return null
     }
   })
