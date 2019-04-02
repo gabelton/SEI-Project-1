@@ -79,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for(let i = 0; i<shipLength; i++){
         if(cpuButtons[randomIndex].classList.contains('ship')) coastIsClear = false
-        console.log(coastIsClear)
         let nextIndex = randomIndex + width
         nextIndex += 10
 
@@ -170,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let turnCount = 0
   let hit = false
   function computerTurn(){
+    console.log(hit)
     if (turnCount === 0 || !hit){
       const randomIndex = Math.floor(Math.random() * playerButtons.length)
       if (playerButtons[randomIndex].classList.contains('ship')) {
@@ -182,11 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (hit) {
       const nextMoves = [(lastHitIndex-1), (lastHitIndex-10), (lastHitIndex+1), (lastHitIndex+10)]
       let randomMove = Math.floor(Math.random() * nextMoves.length)
-      let nextSquare = playerButtons[lastHitIndex + nextMoves[randomMove]]
-      console.log(playerButtons[lastHitIndex + nextMoves[randomMove]])
+      let nextSquare = playerButtons[nextMoves[randomMove]]
+      console.log(nextMoves[randomMove])
       while (nextSquare && (nextSquare.classList.contains('hit') || nextSquare.classList.contains('miss'))){
         randomMove = Math.floor(Math.random() * nextMoves.length)
-        nextSquare = playerButtons[lastHitIndex + nextMoves[randomMove]]
+        nextSquare = playerButtons[nextMoves[randomMove]]
       }
       if (nextSquare.classList.contains('ship')){
         nextSquare.classList.add('hit')
