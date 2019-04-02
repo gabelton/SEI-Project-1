@@ -168,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let nextSquare
   let turnCount = 0
   let hit = false
+  let vector = 0
   function computerTurn(){
     console.log(hit)
     if (turnCount === 0 || !hit){
@@ -190,9 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (nextSquare.classList.contains('ship')){
         nextSquare.classList.add('hit')
+        console.log(nextMoves[randomMove]-lastHitIndex)
+        vector = nextMoves[randomMove]-lastHitIndex
       } else {
         nextSquare.classList.add('miss')
-
       }
       nextMoves.splice(nextMoves.indexOf(randomMove), 1)
     }
