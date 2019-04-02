@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for(let i = 0; i<shipLength; i++) {
           setShipClass(randomIndex, shipLength, i, 1)
         }
-      } else computerPlaceShips()
+      } else computerPlaceShips(shipLength)
 
     } else {
       while (randomIndex > 100-(shipLength*10)) {
