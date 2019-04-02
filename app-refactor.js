@@ -189,9 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-function gameOver(){
 
-}
 
 
   function computerTurn(){
