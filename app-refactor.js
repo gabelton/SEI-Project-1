@@ -258,15 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cpuButtons.forEach(button => {
     button.addEventListener('click', () => {
-      if (shipCount === 0 && gameInPlay === true) {
-        if (button.classList.contains('ship')) {
+      if (shipCount === 0 && gameInPlay) {
+        if (button.classList.contains('hit') || button.classList.contains('miss')) {
+          return null
+        } else if (button.classList.contains('ship')){
           button.classList.add('hit')
           playerHitCount += 1
           checkForWin()
           computerTurn()
-        } else if (button.classList.contains('hit') || button.classList.contains === 'miss'){
-          return null
-        } else {
+        } else if (!button.classList.contains('ship')){
           button.classList.add('miss')
           checkForWin()
           computerTurn()
