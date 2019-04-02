@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('js loaded')
 
+  let gameInPlay = false
+
   const container = document.querySelector('.container')
   const containerPlayer = document.querySelector('.container.player')
   const width = 10
@@ -104,6 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let shipCount = 5
 
+  function startGame(){
+    gameInPlay = true
+  }
+
   const shipButtons = document.querySelectorAll('button.ship')
 
   shipButtons.forEach(button => {
@@ -128,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   playerButtons.forEach((button, index) => {
     button.onclick = (e) => {
       if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === true) {
+        startGame()
         let clearRun = true
         for (let i=0; i<shipLength; i++) {
           const nextIndex = index + i
@@ -159,17 +166,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  let lastHitIndex
+/*  let lastHitIndex
   let nextSquare
   let turnCount = 0
   let hit = false
   let vector = 0
   let directionChanged = 0
+  */
+
+  let playerHitCount = 0
+  let cpuHitCount = 0
+
+  function checkForWin(){
+    if (playerHitCount === 17) {
+      console.log('Player wins!')
+      gameInPlay = false
+    } else if (cpuHitCount === 17) {
+      console.log('CPU wins!')
+      gameInPlay = false
+    } else {
+      return null
+    }
+  }
+
+function gameOver(){
+
+}
+
+
   function computerTurn(){
     const randomIndex = Math.floor(Math.random() * playerButtons.length)
     if (playerButtons[randomIndex].classList.contains('ship') && !playerButtons[randomIndex].classList.contains('hit')) {
       playerButtons[randomIndex].classList.add('hit')
+      cpuHitCount += 1
+      console.log(cpuHitCount)
       console.log(playerButtons[randomIndex])
+      checkForWin()
 
     } else if (!playerButtons[randomIndex].classList.contains('ship') && !playerButtons[randomIndex].classList.contains('hit') && !playerButtons[randomIndex].classList.contains('miss')){
       playerButtons[randomIndex].classList.add('miss')
@@ -225,26 +257,25 @@ document.addEventListener('DOMContentLoaded', () => {
     turnCount += 1 */
   }
 
+
   cpuButtons.forEach(button => {
     button.addEventListener('click', () => {
-      if (shipCount === 0) {
+      if (shipCount === 0 && gameInPlay === true) {
         if (button.classList.contains('ship')) {
           button.classList.add('hit')
+          playerHitCount += 1
+          checkForWin()
           computerTurn()
         } else if (button.classList.contains('hit') || button.classList.contains === 'miss'){
           return null
         } else {
           button.classList.add('miss')
+          checkForWin()
           computerTurn()
         }
       } else return null
     })
   } )
-
-
-function checkForSunk(){
-
-}
 
   /*
 let directionChanged = 0
