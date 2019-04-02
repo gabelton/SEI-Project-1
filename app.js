@@ -169,8 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let turnCount = 0
   let hit = false
   let vector = 0
+  let directionChanged = 0
   function computerTurn(){
-    console.log(hit)
+    let directionChanged = 0
     if (turnCount === 0 || !hit){
       const randomIndex = Math.floor(Math.random() * playerButtons.length)
       if (playerButtons[randomIndex].classList.contains('ship')) {
@@ -193,11 +194,27 @@ document.addEventListener('DOMContentLoaded', () => {
         nextSquare.classList.add('hit')
         console.log(nextMoves[randomMove]-lastHitIndex)
         vector = nextMoves[randomMove]-lastHitIndex
+        let recentHitIndex = nextMoves[randomMove]
+        hit = false
       } else {
         nextSquare.classList.add('miss')
       }
       nextMoves.splice(nextMoves.indexOf(randomMove), 1)
-    }
+    } else if (vector) {
+        if (playerButtons[recentHitIndex + vector].classList.contains('ship')){
+          playerButtons[recentHitIndex + vector].classList.add('hit')
+          recentHitIndex += vector
+        } else {
+          playerButtons[recentHitIndex + vector].classList.add('miss')
+          if (directionChanged === 0) {
+            vector = -vector
+            directionChanged += 1
+          } else {
+            vector = 0
+            hit = false
+          }
+        }
+      }
     turnCount += 1
   }
 
@@ -217,7 +234,23 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   } )
 
-
+  /*
+let directionChanged = 0
+  else if (vector) {
+    if (playerButtons[recentHitIndex + vector].classList.contains('ship')){
+      playerButtons[recentHitIndex + vector].classList.add('hit')
+      recentHitIndex += vector
+    } else {
+      playerButtons[recentHitIndex + vector].classList.add('miss')
+      if (directionChanged === 0) {
+        vector = -vector
+        directionChanged += 1
+      } else {
+        vector = 0
+        hit = false
+      }
+    }
+  } */
 
 
 
