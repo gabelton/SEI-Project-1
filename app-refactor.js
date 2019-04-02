@@ -3,40 +3,47 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('js loaded')
 
   const container = document.querySelector('.container')
-
   const containerPlayer = document.querySelector('.container.player')
+  const width = 10
 
-
-  function createGrid() {
+  function createGrid(container) {
     for (let i = 0; i < 100; i++) {
       const gridSquare = document.createElement('div')
       container.appendChild(gridSquare)
     }
   }
 
-  function createPlayerGrid() {
-    for (let i = 0; i < 100; i++) {
-      const gridSquare = document.createElement('div')
-      containerPlayer.appendChild(gridSquare)
-    }
-  }
-
-  createGrid()
-
-  createPlayerGrid()
+  createGrid(container)
+  createGrid(containerPlayer)
 
   const cpuButtons = document.querySelectorAll('.container.cpu > div')
-
   const playerButtons = document.querySelectorAll('.container.player > div')
 
-  const width = 10
+  const cpuShips = {}
+  const playerShips = {}
 
   function getRandomDirection(){
     return Math.round(Math.random()) === 0
   }
 
+  function setShipClass(randomIndex, shipLength, i, num){
+    const nextIndex = randomIndex + i * num
+    const shipSquare = cpuButtons[nextIndex]
+    shipSquare.classList.add('ship')
+    switch (shipLength) {
+      case 5: shipSquare.classList.add('carrier')
+        break
+      case 4: shipSquare.classList.add('battleship')
+        break
+      case 3: shipSquare.classList.add('submarine')
+        break
+      case 2: shipSquare.classList.add('destroyer')
+        break
+      default: null
+    }
+  }
 
-  function computerPlaceShips() {
+  function computerPlaceShips(shipLength) {
 
     let randomIndex = Math.floor(Math.random() * cpuButtons.length)
 
@@ -59,14 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (coastIsClear) {
         for(let i = 0; i<shipLength; i++) {
-          const nextIndex = randomIndex + i
-          const shipSquare = cpuButtons[nextIndex]
-          shipSquare.classList.add('ship')
-          if (shipLength === 5) shipSquare.classList.add('carrier')
-          else if (shipLength === 4) shipSquare.classList.add('battleship')
-          else if (shipLength === 3) shipSquare.classList.add('submarine')
-          else if (shipLength === 2) shipSquare.classList.add('destroyer')
-          else return null
+          setShipClass(randomIndex, shipLength, i, 1)
         }
       } else computerPlaceShips()
 
@@ -85,9 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
       }
       if(coastIsClear) {
-        for (let i = 0; i<shipLength; i++) {
-          cpuButtons[randomIndex].classList.add('ship')
-          randomIndex += 10
+        for(let i=0; i<shipLength; i++){
+          setShipClass(randomIndex, shipLength, i, width)
         }
       } else {
         computerPlaceShips()
@@ -96,15 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  let shipLength = 5
-  computerPlaceShips()
-  shipLength = 4
-  computerPlaceShips()
-  shipLength = 3
-  computerPlaceShips()
-  computerPlaceShips()
-  shipLength = 2
-  computerPlaceShips()
+  computerPlaceShips(5)
+  computerPlaceShips(4)
+  computerPlaceShips(3)
+  computerPlaceShips(2)
+  computerPlaceShips(3)
 
 
   let shipCount = 5
@@ -171,7 +166,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let vector = 0
   let directionChanged = 0
   function computerTurn(){
-    let directionChanged = 0
+    const randomIndex = Math.floor(Math.random() * playerButtons.length)
+    if (playerButtons[randomIndex].classList.contains('ship') && !playerButtons[randomIndex].classList.contains('hit')) {
+      playerButtons[randomIndex].classList.add('hit')
+      console.log(playerButtons[randomIndex])
+
+    } else if (!playerButtons[randomIndex].classList.contains('ship') && !playerButtons[randomIndex].classList.contains('hit') && !playerButtons[randomIndex].classList.contains('miss')){
+      playerButtons[randomIndex].classList.add('miss')
+      console.log(playerButtons[randomIndex])
+    } else {
+      console.log(playerButtons[randomIndex])
+      computerTurn()
+    }
+    /*let directionChanged = 0
     if (turnCount === 0 || !hit){
       const randomIndex = Math.floor(Math.random() * playerButtons.length)
       if (playerButtons[randomIndex].classList.contains('ship')) {
@@ -215,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-    turnCount += 1
+    turnCount += 1 */
   }
 
   cpuButtons.forEach(button => {
@@ -236,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function checkForSunk(){
-  
+
 }
 
   /*
