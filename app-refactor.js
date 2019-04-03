@@ -112,9 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
     gameInPlay = true
   }
 
-  const shipButtons = document.querySelectorAll('button.ship')
 
-  shipButtons.forEach(button => {
+  const allButtons = document.querySelectorAll('button')
+  const selectionButtons = document.querySelectorAll('button.selection')
+
+  allButtons.forEach(button => {
+    button.addEventListener('mouseover', () => {
+      button.style.cursor = 'pointer'
+    })
+  })
+
+  selectionButtons.forEach(button => {
     button.addEventListener('click', (e) => {
       shipLength = parseInt(e.target.value)
     })
@@ -313,9 +321,7 @@ const rulesButton = document.querySelector('.rules')
     }
   })
 
-  rulesButton.addEventListener('mouseover', () =>{
-    rulesButton.style.cursor = 'pointer'
-  })
+
 
 
 

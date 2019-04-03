@@ -2,9 +2,10 @@
   box-sizing: border-box;
 }
 body {
-  background-color: dodgerblue;
+  background-color: black;
   text-align: center;
   margin: auto;
+  height: 900px;
 }
 
 main {
@@ -15,18 +16,23 @@ main {
 
 h1 {
   font-family: 'Stardos Stencil', cursive;
-  font-size: 45px;
+  font-size: 55px;
   font-weight: bold;
   text-transform: uppercase;
+  color: orange;
+  width: 400px;
+  border-style: solid;
+  margin: 20px auto;
 }
 
 .rules {
   font-family: 'Stardos Stencil', cursive;
-  font-size: 20px;
+  font-size: 30px;
   text-decoration: underline;
   border: none;
-  background-color: dodgerblue;
+  background-color: black;
   margin: 0 auto 10px auto;
+  color: orange;
 }
 
 p {
@@ -34,22 +40,21 @@ p {
   margin-bottom: 20px;
 }
 
-.container {
+.cpu {
   width: 500px;
   height: 500px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 20px;
+  margin-right: 35px;
   margin-top: 20px;
 }
 
-.containerPlayer {
+.player {
   width: 500px;
   height: 500px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 20px;
-  margin-right: 20px;
+margin-left: 35px;
   margin-top: 20px;
 }
 
@@ -59,6 +64,7 @@ p {
   border-style: solid;
   border-color: black;
   border-width: 1px;
+  background-color: dodgerblue;
 }
 
 .containerPlayer > div {
@@ -67,6 +73,11 @@ p {
   border-style: solid;
   border-color: black;
   border-width: 1px;
+  background-color: dodgerblue;
+}
+
+footer {
+  margin-top: 20px;
 }
 
 .ship {
@@ -79,4 +90,15 @@ p {
 
 .miss {
   background-color: white;
+}
+
+.selection {
+  background-color: orange;
+  font-family: 'Stardos Stencil', cursive;
+  font-size: 20px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
