@@ -230,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (nextSquare.classList.contains('ship') && !nextSquare.classList.contains('hit')){
         nextSquare.classList.add('hit')
         console.log(nextMoves[randomMove]-firstHitIndex)
+        cpuHitCount += 1
         checkForWin()
         vector = nextMoves[randomMove]-firstHitIndex
         recentHitIndex = nextMoves[randomMove]
@@ -244,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (playerButtons[recentHitIndex + vector] && playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit') && !playerButtons[recentHitIndex + vector].classList.contains('miss')){
         playerButtons[recentHitIndex + vector].classList.add('hit')
         recentHitIndex += vector
+        cpuHitCount += 1
         checkForWin()
       } else if (playerButtons[recentHitIndex + vector] && !playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit') && !playerButtons[recentHitIndex + vector].classList.contains('miss') ){
         playerButtons[recentHitIndex + vector].classList.add('miss')
@@ -257,8 +259,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else {
         console.log('you are here')
-        cpuReset()
-        computerTurn()
+        recentHitIndex = firstHitIndex
+        if (directionChanged === 0) {
+          vector = -vector
+          directionChanged += 1
+          computerTurn()
+        } else if (directionChanged === 1){
+          cpuReset()
+          computerTurn()
+        }
       }
     } else console.log('Why am I here?')
   }
