@@ -3,10 +3,19 @@
 }
 body {
   background-color: dodgerblue;
+  text-align: center;
+  margin: auto;
 }
 
 main {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: 'Stardos Stencil', cursive;
+  font-size: 35px;
 }
 
 .container {

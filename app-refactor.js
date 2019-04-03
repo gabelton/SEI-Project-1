@@ -196,6 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let firstHitIndex
   let recentHitIndex
 
+  function newCPUAttack(){
+    directionChanged = 0
+    vector = false
+    hit = false
+    recentHitIndex = false
+    computerTurn()
+  }
+
 
   function computerTurn(){
     if (!hit){
