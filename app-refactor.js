@@ -246,6 +246,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (directionChanged === 0) {
           vector = -vector
           directionChanged += 1
+        } else if (directionChanged === 1){
+          directionChanged = 0
+          vector = false
+          hit = false
+          recentHitIndex = false
         }
       }
     } else console.log('Why am I here?')
