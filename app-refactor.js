@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextIndex = randomIndex + i
         //const shipSquare = squares[nextIndex]
         if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
+        console.log(coastIsClear)
       }
       if (coastIsClear) {
         for(let i = 0; i<shipLength; i++) {
@@ -83,8 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if(cpuButtons[randomIndex].classList.contains('ship')) coastIsClear = false
         let nextIndex = randomIndex + width
         nextIndex += 10
+        console.log(coastIsClear)
 
-        if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
+      //  if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
       }
       if(coastIsClear) {
         for(let i=0; i<shipLength; i++){
@@ -272,6 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
     } else console.log('Why am I here?')
   }
 
+/*  function countHits(shipType, shipLength) {
+    const numOfHits = cpuButtons.filter((element) => {
+      return element.contains(shipType, 'hit')
+    })
+    if (numOfHits.length === shipLength) console.log(`You sunk cpu's ${shipType}`)
+  }
+  */
 
   cpuButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -281,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (button.classList.contains('ship')){
           button.classList.add('hit')
           playerHitCount += 1
+          //countHits('carrier', 5)
           checkForWin()
           computerTurn()
         } else if (!button.classList.contains('ship')){
@@ -291,6 +301,22 @@ document.addEventListener('DOMContentLoaded', () => {
       } else return null
     })
   } )
+
+const rules = document.querySelector('p')
+const rulesButton = document.querySelector('.rules')
+
+  rulesButton.addEventListener('click', () => {
+    if (rules.style.display === 'none') {
+      rules.style.display = 'block'
+    } else {
+      rules.style.display = 'none'
+    }
+  })
+
+  rulesButton.addEventListener('mouseover', () =>{
+    rulesButton.style.cursor = 'pointer'
+  })
+
 
 
   //venture nay further, traveller
