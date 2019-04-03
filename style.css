@@ -15,7 +15,8 @@ main {
 
 h1 {
   font-family: 'Stardos Stencil', cursive;
-  font-size: 35px;
+  font-size: 45px;
+  font-weight: bold;
 }
 
 .container {

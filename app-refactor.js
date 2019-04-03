@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   playerButtons.forEach((button, index) => {
     button.onclick = (e) => {
-      if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === true) {
+      if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === true && !(width - (index % width) < shipLength)) {
         startGame()
         let clearRun = true
         for (let i=0; i<shipLength; i++) {
