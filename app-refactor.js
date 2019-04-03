@@ -148,13 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           shipCount -= 1
         }
-      } else if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === false) {
+      } else if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === false && !(index > 110-(shipLength*10))) {
         let clearRun = true
         if(playerButtons[index].classList.contains('ship')) clearRun = false
         let nextIndex = index + width
         nextIndex += 10
 
-        if(cpuButtons[nextIndex].classList.contains('ship')) clearRun = false
+        if(playerButtons[nextIndex].classList.contains('ship')) clearRun = false
         if(clearRun) {
           for (let i = 0; i<shipLength; i++) {
             playerButtons[index].classList.add('ship')
