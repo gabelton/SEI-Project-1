@@ -188,13 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let firstHitIndex
   let recentHitIndex
 
-  function newCPUAttack(){
+  function cpuReset(){
     directionChanged = 0
     vector = false
     hit = false
     recentHitIndex = false
-    computerTurn()
   }
+
+
 
 
   function computerTurn(){
@@ -218,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const nextMoves = [(firstHitIndex-1), (firstHitIndex-10), (firstHitIndex+1), (firstHitIndex+10)]
       let randomMove = Math.floor(Math.random() * nextMoves.length)
       let nextSquare = playerButtons[nextMoves[randomMove]]
+      console.log(nextSquare)
       while (!nextSquare || nextSquare.classList.contains('hit') || nextSquare.classList.contains('miss')){
         const index = nextMoves.indexOf(randomMove)
         nextMoves.splice(index, 1)
@@ -225,21 +227,25 @@ document.addEventListener('DOMContentLoaded', () => {
         nextSquare = playerButtons[nextMoves[randomMove]]
       }
       console.log(nextSquare)
-      if (nextSquare.classList.contains('ship')){
+      if (nextSquare.classList.contains('ship') && !nextSquare.classList.contains('hit')){
         nextSquare.classList.add('hit')
         console.log(nextMoves[randomMove]-firstHitIndex)
+        checkForWin()
         vector = nextMoves[randomMove]-firstHitIndex
         recentHitIndex = nextMoves[randomMove]
-      } else {
+      } else if (!nextSquare.classList.contains('ship') && !nextSquare.classList.contains('miss') && !nextSquare.classList.contains('hit')){
         nextSquare.classList.add('miss')
+      } else {
+        console.log('over here!')
       }
     } else if (vector){
       console.log('vector section')
       console.log(recentHitIndex)
-      if (playerButtons[recentHitIndex + vector].classList.contains('ship')){
+      if (playerButtons[recentHitIndex + vector] && playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit') && !playerButtons[recentHitIndex + vector].classList.contains('miss')){
         playerButtons[recentHitIndex + vector].classList.add('hit')
         recentHitIndex += vector
-      } else {
+        checkForWin()
+      } else if (playerButtons[recentHitIndex + vector] && !playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit') && !playerButtons[recentHitIndex + vector].classList.contains('miss') ){
         playerButtons[recentHitIndex + vector].classList.add('miss')
         //hit = false
         recentHitIndex = firstHitIndex
@@ -247,11 +253,12 @@ document.addEventListener('DOMContentLoaded', () => {
           vector = -vector
           directionChanged += 1
         } else if (directionChanged === 1){
-          directionChanged = 0
-          vector = false
-          hit = false
-          recentHitIndex = false
+          cpuReset()
         }
+      } else {
+        console.log('you are here')
+        cpuReset()
+        computerTurn()
       }
     } else console.log('Why am I here?')
   }
