@@ -166,14 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-/*  let lastHitIndex
-  let nextSquare
-  let turnCount = 0
-  let hit = false
-  let vector = 0
-  let directionChanged = 0
-  */
-
   let playerHitCount = 0
   let cpuHitCount = 0
 
@@ -265,54 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /*let directionChanged = 0
-    if (turnCount === 0 || !hit){
-      const randomIndex = Math.floor(Math.random() * playerButtons.length)
-      if (playerButtons[randomIndex].classList.contains('ship')) {
-        playerButtons[randomIndex].classList.add('hit')
-        lastHitIndex = randomIndex
-        hit = true
-      } else if (playerButtons[randomIndex].classList.contains('ship') === false){
-        playerButtons[randomIndex].classList.add('miss')
-      }
-    } else if (hit) {
-      const nextMoves = [(lastHitIndex-1), (lastHitIndex-10), (lastHitIndex+1), (lastHitIndex+10)]
-      let randomMove = Math.floor(Math.random() * nextMoves.length)
-      let nextSquare = playerButtons[nextMoves[randomMove]]
-      console.log(nextMoves[randomMove])
-      while (nextSquare && (nextSquare.classList.contains('hit') || nextSquare.classList.contains('miss'))){
-        randomMove = Math.floor(Math.random() * nextMoves.length)
-        nextSquare = playerButtons[nextMoves[randomMove]]
-      }
-      if (nextSquare.classList.contains('ship')){
-        nextSquare.classList.add('hit')
-        console.log(nextMoves[randomMove]-lastHitIndex)
-        vector = nextMoves[randomMove]-lastHitIndex
-        let recentHitIndex = nextMoves[randomMove]
-        hit = false
-      } else {
-        nextSquare.classList.add('miss')
-      }
-      nextMoves.splice(nextMoves.indexOf(randomMove), 1)
-    } else if (vector) {
-      if (playerButtons[recentHitIndex + vector].classList.contains('ship')){
-        playerButtons[recentHitIndex + vector].classList.add('hit')
-        recentHitIndex += vector
-      } else {
-        playerButtons[recentHitIndex + vector].classList.add('miss')
-        if (directionChanged === 0) {
-          vector = -vector
-          directionChanged += 1
-        } else {
-          vector = 0
-          hit = false
-        }
-      }
-    }
-    turnCount += 1 */
-
-
-
   cpuButtons.forEach(button => {
     button.addEventListener('click', () => {
       if (shipCount === 0 && gameInPlay) {
@@ -331,26 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else return null
     })
   } )
-
-  /*
-let directionChanged = 0
-  else if (vector) {
-    if (playerButtons[recentHitIndex + vector].classList.contains('ship')){
-      playerButtons[recentHitIndex + vector].classList.add('hit')
-      recentHitIndex += vector
-    } else {
-      playerButtons[recentHitIndex + vector].classList.add('miss')
-      if (directionChanged === 0) {
-        vector = -vector
-        directionChanged += 1
-      } else {
-        vector = 0
-        hit = false
-      }
-    }
-  } */
-
-
 
 
   //venture nay further, traveller
