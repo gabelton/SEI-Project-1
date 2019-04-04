@@ -200,9 +200,12 @@ function boardSetup() {
             shipSquare.classList.add('ship')
           }
           shipCount -= 1
+          console.log(shipCount)
+          console.log(gameInPlay)
           gameStartAlert()
         }
       } else if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === false && !(index >= 110-(shipLength*10))) {
+        startGame()
         let clearRun = true
         if(playerButtons[index].classList.contains('ship')) clearRun = false
         let nextIndex = index + width
@@ -215,6 +218,8 @@ function boardSetup() {
             index += 10
           }
           shipCount -= 1
+          console.log(shipCount)
+          console.log(gameInPlay)
           gameStartAlert()
         }
       }
