@@ -114,6 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
     gameInPlay = true
   }
 
+  function gameStartAlert(){
+    if (shipCount === 0) playerInfo.innerText = 'Ready the guns, sponger! Pick a square on the enemy\'s grid to start the game!'
+  }
+
 
   const allButtons = document.querySelectorAll('button')
   const selectionButtons = document.querySelectorAll('button.selection')
@@ -159,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             shipSquare.classList.add('ship')
           }
           shipCount -= 1
+          gameStartAlert()
         }
       } else if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === false && !(index > 110-(shipLength*10))) {
         let clearRun = true
@@ -173,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             index += 10
           }
           shipCount -= 1
+          gameStartAlert()
         }
       }
     }
@@ -185,12 +191,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function checkForWin(){
     if (playerHitCount === 17) {
-      console.log('Player wins!')
+      console.log('Victory is ours!')
       playerInfo.innerText = 'Player wins!'
       gameInPlay = false
     } else if (cpuHitCount === 17) {
       console.log('CPU wins!')
-      playerInfo.innerText = 'CPU wins!'
+      playerInfo.innerText = 'He has won the battle, but not the war! Click reset to play again!'
       gameInPlay = false
     } else {
       return null
@@ -211,7 +217,13 @@ document.addEventListener('DOMContentLoaded', () => {
     recentHitIndex = false
   }
 
+  function hitAlert(){
+    playerInfo.innerText = 'Good shot, gunner!'
+  }
 
+  function missAlert(){
+    playerInfo.innerText = 'Unlucky, sirrah! Reload your guns'
+  }
 
 
   function computerTurn(){
@@ -302,11 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (button.classList.contains('ship')){
           button.classList.add('hit')
           playerHitCount += 1
-          //countHits('carrier', 5)
+          hitAlert()
           checkForWin()
           computerTurn()
         } else if (!button.classList.contains('ship')){
           button.classList.add('miss')
+          missAlert()
           checkForWin()
           computerTurn()
         }
