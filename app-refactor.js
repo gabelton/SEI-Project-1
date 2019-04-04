@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let gameInPlay = false
 
-  const container = document.querySelector('.container')
+  const container = document.querySelector('.container.cpu')
   const containerPlayer = document.querySelector('.container.player')
   const width = 10
 
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           shipCount -= 1
         }
-      } else return null
+      }
     }
   })
 
@@ -229,10 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const nextMoves = [(firstHitIndex-1), (firstHitIndex-10), (firstHitIndex+1), (firstHitIndex+10)]
       let randomMove = Math.floor(Math.random() * nextMoves.length)
       let nextSquare = playerButtons[nextMoves[randomMove]]
-      console.log(nextSquare)
       while (!nextSquare || nextSquare.classList.contains('hit') || nextSquare.classList.contains('miss')){
-        const index = nextMoves.indexOf(randomMove)
-        nextMoves.splice(index, 1)
+        nextMoves.splice(randomMove, 1)
         randomMove = Math.floor(Math.random() * nextMoves.length)
         nextSquare = playerButtons[nextMoves[randomMove]]
       }
@@ -306,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
           checkForWin()
           computerTurn()
         }
-      } else return null
+      }
     })
   } )
 
