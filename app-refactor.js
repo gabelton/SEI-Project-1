@@ -113,24 +113,6 @@ function boardSetup() {
 
   boardSetup()
 
-  const reset = document.querySelector('.reset')
-
-  reset.addEventListener('click', () => {
-    cpuButtons.forEach(button => {
-      button.classList.remove('ship', 'hit', 'miss', 'hidden')
-    })
-    playerButtons.forEach(button => {
-      button.classList.remove('ship', 'hit', 'miss')
-    })
-    shipCount = 5
-    shipLength = false
-    cpuHitCount = 0
-    playerHitCount = 0
-    gameInPlay = false
-    boardSetup()
-    playerInfo.innerText = 'Player, choose your ship class and select a square to start placing your ships!'
-  })
-
 
   let shipCount = 5
 
@@ -381,6 +363,25 @@ const rulesButton = document.querySelector('.rules')
     }
   })
 
+  const reset = document.querySelector('.reset')
+
+  reset.addEventListener('click', () => {
+    cpuButtons.forEach(button => {
+      button.classList.remove('ship', 'hit', 'miss', 'hidden')
+    })
+    playerButtons.forEach(button => {
+      button.classList.remove('ship', 'hit', 'miss')
+    })
+    shipCount = 5
+    shipLength = false
+    cpuHitCount = 0
+    playerHitCount = 0
+    gameInPlay = false
+    clearSelection(selectionButtons,'clickedSelection','selection')
+    clearSelection(directionButtons,'clickedDirection', 'direction')
+    boardSetup()
+    playerInfo.innerText = 'Player, choose your ship class and select a square to start placing your ships!'
+  })
 
 
 
