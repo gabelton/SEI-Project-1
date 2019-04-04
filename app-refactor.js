@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let gameInPlay = false
 
+  const playerInfo = document.querySelector('span')
+
   const container = document.querySelector('.container.cpu')
   const containerPlayer = document.querySelector('.container.player')
   const width = 10
@@ -176,15 +178,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
+
+
   let playerHitCount = 0
   let cpuHitCount = 0
 
   function checkForWin(){
     if (playerHitCount === 17) {
       console.log('Player wins!')
+      playerInfo.innerText = 'Player wins!'
       gameInPlay = false
     } else if (cpuHitCount === 17) {
       console.log('CPU wins!')
+      playerInfo.innerText = 'CPU wins!'
       gameInPlay = false
     } else {
       return null
