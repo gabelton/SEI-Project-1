@@ -152,9 +152,19 @@ function boardSetup() {
     })
   })
 
+  function clearSelection(buttons, classToRemove, classToAdd){
+    buttons.forEach(button => {
+      button.classList.remove(classToRemove)
+      button.classList.add(classToAdd)
+    })
+  }
+
   selectionButtons.forEach(button => {
     button.addEventListener('click', (e) => {
+      clearSelection(selectionButtons,'clickedSelection','selection')
       shipLength = parseInt(e.target.value)
+      button.classList.remove('selection')
+      button.classList.add('clickedSelection')
     })
   })
 
@@ -164,6 +174,9 @@ function boardSetup() {
 
   directionButtons.forEach(button => {
     button.addEventListener('click', (e) => {
+      clearSelection(directionButtons,'clickedDirection', 'direction')
+      button.classList.remove('direction')
+      button.classList.add('clickedDirection')
       if (e.target.value === 'horizontal') {
         horizontalDirection = true
       } else horizontalDirection = false
