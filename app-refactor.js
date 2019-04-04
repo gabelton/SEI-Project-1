@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const nextIndex = randomIndex + i
         //const shipSquare = squares[nextIndex]
-        if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
+        if(cpuButtons[randomIndex].classList.contains('ship') || cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
         console.log(coastIsClear)
       }
       if (coastIsClear) {
@@ -83,9 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
       let coastIsClear = true
 
       for(let i = 0; i<shipLength; i++){
-        if(cpuButtons[randomIndex].classList.contains('ship')) coastIsClear = false
-        let nextIndex = randomIndex + width
-        nextIndex += 10
+        //if(cpuButtons[randomIndex].classList.contains('ship')) coastIsClear = false
+        const nextIndex = randomIndex + i * 10
+        //let nextIndex = randomIndex + width
+        if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
+        //nextIndex += 10
+        //if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
         console.log(coastIsClear)
 
       //  if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
