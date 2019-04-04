@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function setShipClass(randomIndex, shipLength, i, num){
     const nextIndex = randomIndex + i * num
     const shipSquare = cpuButtons[nextIndex]
-    shipSquare.classList.add('ship')
+    shipSquare.classList.add('ship', 'hidden')
     switch (shipLength) {
       case 5: shipSquare.classList.add('carrier')
         break
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function checkForWin(){
     if (playerHitCount === 17) {
       console.log('Victory is ours!')
-      playerInfo.innerText = 'Player wins!'
+      playerInfo.innerText = 'Victory is ours!'
       gameInPlay = false
     } else if (cpuHitCount === 17) {
       console.log('CPU wins!')
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function missAlert(){
-    playerInfo.innerText = 'Unlucky, sirrah! Reload your guns'
+    playerInfo.innerText = 'Unlucky, sirrah! Reload your guns!'
   }
 
 
@@ -313,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return null
         } else if (button.classList.contains('ship')){
           button.classList.add('hit')
+          button.classList.remove('hidden')
           playerHitCount += 1
           hitAlert()
           checkForWin()
