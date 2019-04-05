@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let clearRun = true
         for (let i=0; i<shipLength; i++) {
           const nextIndex = index + i
-          if(playerButtons[nextIndex].classList.contains('ship')) clearRun = false
+          if(playerButtons[nextIndex].classList.contains('ship') || playerButtons[index].classList.contains('ship')) clearRun = false
         }
         if (clearRun) {
           for (let i=0; i<shipLength; i++) {
@@ -189,11 +189,15 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (e.target.className !== 'ship' && shipCount > 0 && horizontalDirection === false && !(index >= 110-(shipLength*10))) {
         startGame()
         let clearRun = true
-        if(playerButtons[index].classList.contains('ship')) clearRun = false
+        for (let i=0; i<shipLength; i++) {
+          const nextIndex = index + i * 10
+          if(playerButtons[nextIndex].classList.contains('ship') || playerButtons[index].classList.contains('ship')) clearRun = false
+        }
+        /*if(playerButtons[index].classList.contains('ship')) clearRun = false
         let nextIndex = index + width
         nextIndex += 10
         console.log(playerButtons[nextIndex])
-        if(playerButtons[nextIndex] && playerButtons[nextIndex].classList.contains('ship')) clearRun = false
+        if(playerButtons[nextIndex] && playerButtons[nextIndex].classList.contains('ship')) clearRun = false */
         if(clearRun) {
           for (let i = 0; i<shipLength; i++) {
             playerButtons[index].classList.add('ship')
