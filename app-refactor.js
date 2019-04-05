@@ -290,15 +290,12 @@ function boardSetup() {
         console.log('over here!')
       }
     } else if (vector){
-      const strungVector = (recentHitIndex + vector).toString()
-      strungVector.charAt(strungVector.length-1)
-      console.log(strungVector)
-      if (playerButtons[recentHitIndex + vector] && strungVector.charAt(strungVector.length-1) !== '9' && playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit') && !playerButtons[recentHitIndex + vector].classList.contains('miss')){
+      if (playerButtons[recentHitIndex + vector] && playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit') && !playerButtons[recentHitIndex + vector].classList.contains('miss')){
         playerButtons[recentHitIndex + vector].classList.add('hit')
         recentHitIndex += vector
         cpuHitCount += 1
         checkForWin()
-      } else if (playerButtons[recentHitIndex + vector] && !playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit') && !playerButtons[recentHitIndex + vector].classList.contains('miss') && strungVector.charAt(strungVector.length-1) !== '9'){
+      } else if (playerButtons[recentHitIndex + vector] && !playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit')){
         playerButtons[recentHitIndex + vector].classList.add('miss')
         //hit = false
         recentHitIndex = firstHitIndex
