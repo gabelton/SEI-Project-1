@@ -121,7 +121,7 @@ function boardSetup() {
   }
 
   function gameStartAlert(){
-    if (shipCount === 0) playerInfo.innerText = 'Ready the guns, sponger! Pick a square on the enemy\'s grid to start the game!'
+    if (shipCount === 0) playerInfo.innerText = 'Ready the cannons, sponger! Pick a square on the enemy\'s grid to start the game!'
   }
 
 
@@ -241,12 +241,29 @@ function boardSetup() {
     recentHitIndex = false
   }
 
+function randomPhrase(){
+  let phraseNumber = Math.floor(Math.random() * (4 - 1)) + 1
+  return phraseNumber
+}
+
   function hitAlert(){
+    if (randomPhrase() === 1){
     playerInfo.innerText = 'Good shot, gunner!'
+  } else if (randomPhrase() === 2){
+    playerInfo.innerText = 'An extra ration of rum for you, sailor!'
+  } else {
+    playerInfo.innerText = 'Rule Britannia!'
+  }
   }
 
   function missAlert(){
-    playerInfo.innerText = 'Unlucky, sirrah! Reload your guns!'
+    if (randomPhrase() === 1){
+      playerInfo.innerText = 'Unlucky, sirrah! Reload your guns!'
+  } else if (randomPhrase() === 2){
+        playerInfo.innerText = 'Have you been on the grog again?'
+  } else {
+        playerInfo.innerText = 'Do you want to see a guillotine in Trafalgar? Reload the cannon!'
+  }
   }
 
 
@@ -378,7 +395,7 @@ const rulesButton = document.querySelector('.rules')
     clearSelection(selectionButtons,'clickedSelection','selection')
     clearSelection(directionButtons,'clickedDirection', 'direction')
     boardSetup()
-    playerInfo.innerText = 'Player, choose your ship class and select a square to start placing your ships!'
+    playerInfo.innerText = 'Ahoy hoy, sailor, choose your ship class and select a square to start placing your ships!'
   })
 
 

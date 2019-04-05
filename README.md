@@ -37,7 +37,7 @@ The player clicks to place ships on their board and then clicks on the opponent'
 ### Game Instructions
 1. _How the game works. Break the process down into steps. Add a screenshot for each step_
 1. On loading the player sees two blank grids and the rules menu above. The player has the option to
-2. The player has the option to toggle the rules by clicking the button, although on screen updates below the grid also guide the player throughout the game.
+2. The player has the option to toggle the rules by clicking the button, although on screen updates (loosely inspired by Master and Commander) below the grid also guide the player throughout the game.
 3. The player is invited to place ships (one of each class) on their grid.
 4. Ships can be placed either vertically or horizontally (by clicking the toggle buttons) anywhere on the board, provided there is space and ships do not overlap.
 5. Once five ships are on the board, the player can no longer click on their own grid and now has the option to start guessing where the opponent's ships are.
