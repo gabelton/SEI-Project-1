@@ -103,13 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-function boardSetup() {
-  computerPlaceShips(5)
-  computerPlaceShips(4)
-  computerPlaceShips(3)
-  computerPlaceShips(2)
-  computerPlaceShips(3)
-}
+  function boardSetup() {
+    computerPlaceShips(5)
+    computerPlaceShips(4)
+    computerPlaceShips(3)
+    computerPlaceShips(2)
+    computerPlaceShips(3)
+  }
 
   boardSetup()
 
@@ -241,29 +241,29 @@ function boardSetup() {
     recentHitIndex = false
   }
 
-function randomPhrase(){
-  let phraseNumber = Math.floor(Math.random() * (4 - 1)) + 1
-  return phraseNumber
-}
+  function randomPhrase(){
+    let phraseNumber = Math.floor(Math.random() * (4 - 1)) + 1
+    return phraseNumber
+  }
 
   function hitAlert(){
     if (randomPhrase() === 1){
-    playerInfo.innerText = 'Good shot, gunner!'
-  } else if (randomPhrase() === 2){
-    playerInfo.innerText = 'An extra ration of rum for you, sailor!'
-  } else {
-    playerInfo.innerText = 'Rule Britannia!'
-  }
+      playerInfo.innerText = 'Good shot, gunner!'
+    } else if (randomPhrase() === 2){
+      playerInfo.innerText = 'An extra ration of rum for you, sailor!'
+    } else {
+      playerInfo.innerText = 'Rule Britannia!'
+    }
   }
 
   function missAlert(){
     if (randomPhrase() === 1){
       playerInfo.innerText = 'Unlucky, sirrah! Reload your guns!'
-  } else if (randomPhrase() === 2){
-        playerInfo.innerText = 'Have you been on the grog again?'
-  } else {
-        playerInfo.innerText = 'Do you want to see a guillotine in Trafalgar? Reload the cannon!'
-  }
+    } else if (randomPhrase() === 2){
+      playerInfo.innerText = 'Have you been on the grog again?'
+    } else {
+      playerInfo.innerText = 'Do you want to see a guillotine in Trafalgar? Reload the cannon!'
+    }
   }
 
 
@@ -312,7 +312,7 @@ function randomPhrase(){
         recentHitIndex += vector
         cpuHitCount += 1
         checkForWin()
-      } else if (playerButtons[recentHitIndex + vector] && !playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('hit')){
+      } else if (playerButtons[recentHitIndex + vector] && !playerButtons[recentHitIndex + vector].classList.contains('ship') && !playerButtons[recentHitIndex + vector].classList.contains('miss') && !playerButtons[recentHitIndex + vector].classList.contains('hit')){
         playerButtons[recentHitIndex + vector].classList.add('miss')
         //hit = false
         recentHitIndex = firstHitIndex
@@ -337,7 +337,7 @@ function randomPhrase(){
     } else console.log('Why am I here?')
   }
 
-/*  function countHits(shipType, shipLength) {
+  /*  function countHits(shipType, shipLength) {
     const numOfHits = cpuButtons.filter((element) => {
       return element.contains(shipType, 'hit')
     })
@@ -367,8 +367,8 @@ function randomPhrase(){
     })
   } )
 
-const rules = document.querySelector('p')
-const rulesButton = document.querySelector('.rules')
+  const rules = document.querySelector('p')
+  const rulesButton = document.querySelector('.rules')
 
   rulesButton.addEventListener('click', () => {
     if (rules.style.display === 'none') {
