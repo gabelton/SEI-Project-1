@@ -37,24 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function computerPlaceShips() {
-
     let randomIndex = Math.floor(Math.random() * cpuButtons.length)
-
     let columnIndex = (randomIndex % width)
-
     if (getRandomDirection()) {
-
       while ((width - columnIndex) < shipLength) {
         randomIndex = Math.floor(Math.random() * cpuButtons.length)
         columnIndex = (randomIndex % width)
       }
-
       let coastIsClear = true
-
       for(let i = 0; i<shipLength; i++){
-
         const nextIndex = randomIndex + i
-        //const shipSquare = squares[nextIndex]
         if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
       }
       if (coastIsClear) {
@@ -69,19 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
           else return null
         }
       } else computerPlaceShips()
-
     } else {
       while (randomIndex > 100-(shipLength*10)) {
         randomIndex = Math.floor(Math.random() * cpuButtons.length)
       }
-
       let coastIsClear = true
-
       for(let i = 0; i<shipLength; i++){
         if(cpuButtons[randomIndex].classList.contains('ship')) coastIsClear = false
         let nextIndex = randomIndex + width
         nextIndex += 10
-
         if(cpuButtons[nextIndex].classList.contains('ship')) coastIsClear = false
       }
       if(coastIsClear) {
@@ -235,27 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } )
 
 
-function checkForSunk(){
-  
-}
 
-  /*
-let directionChanged = 0
-  else if (vector) {
-    if (playerButtons[recentHitIndex + vector].classList.contains('ship')){
-      playerButtons[recentHitIndex + vector].classList.add('hit')
-      recentHitIndex += vector
-    } else {
-      playerButtons[recentHitIndex + vector].classList.add('miss')
-      if (directionChanged === 0) {
-        vector = -vector
-        directionChanged += 1
-      } else {
-        vector = 0
-        hit = false
-      }
-    }
-  } */
 
 
 
